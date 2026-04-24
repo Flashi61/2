@@ -98,15 +98,16 @@
             line-height: 1.4;
         }
 
-        /* галерея из 4 фотографий */
-        .photos-gallery {
+        /* новая структура галереи: первые три — сетка, четвертая — отдельный центрированный блок, потом видео */
+        .gallery-top {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             max-width: 1000px;
-            margin: 1.8rem auto;
+            margin: 0 auto 1.5rem auto;
         }
 
+        /* стиль для фото (общий для всех) */
         .single-photo {
             border-radius: 2rem;
             overflow: hidden;
@@ -134,6 +135,44 @@
             color: #bef5d4;
             background: rgba(0,0,0,0.5);
             border-top: 1px solid rgba(46, 255, 140, 0.4);
+        }
+
+        /* четвертая фотография — по центру */
+        .centered-photo {
+            max-width: 480px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* видео блок */
+        .video-wrapper {
+            max-width: 900px;
+            margin: 1.5rem auto 1rem auto;
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 2px solid #2eff8c;
+            box-shadow: 0 0 35px rgba(46, 255, 140, 0.5);
+            background: #000;
+            transition: 0.2s;
+        }
+        .video-wrapper:hover {
+            transform: scale(1.01);
+            border-color: #7affb0;
+            box-shadow: 0 0 45px rgba(46, 255, 140, 0.8);
+        }
+        video {
+            width: 100%;
+            display: block;
+            outline: none;
+        }
+        .video-caption {
+            text-align: center;
+            padding: 0.8rem;
+            font-weight: 600;
+            background: rgba(0,0,0,0.6);
+            color: #bef5d4;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(46, 255, 140, 0.5);
         }
 
         .egida-wrapper {
@@ -187,12 +226,20 @@
             100% { transform: translate(60px, 40px) scale(1.2); opacity: 0.7; }
         }
 
-        @media (max-width: 680px) {
+        @media (max-width: 780px) {
+            .gallery-top {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .centered-photo {
+                max-width: 100%;
+                margin: 0 0 1.5rem 0;
+            }
             .halo-container {
                 padding: 1.5rem;
             }
-            .photos-gallery {
-                grid-template-columns: 1fr;
+            .video-wrapper {
+                margin: 1rem auto;
             }
             .egida-link {
                 padding: 0.7rem 1.2rem;
@@ -217,8 +264,8 @@
             Не концерт — ритуал. Не зрители — сообщество.
         </div>
 
-        <!-- ЧЕТЫРЕ ФОТОГРАФИИ — ГАЛЕРЕЯ ГАЛО -->
-        <div class="photos-gallery">
+        <!-- Первая часть галереи: первые три фотографии в сетке 3 колонки -->
+        <div class="gallery-top">
             <div class="single-photo">
                 <img src="IMG_6438.png" alt="ГАЛО КОНЦЕРТ — кадр 1" loading="lazy">
                 <div class="photo-caption">ГАЛО — момент истины #1</div>
@@ -233,10 +280,24 @@
                 <img src="IMG_6440.png" alt="ГАЛО КОНЦЕРТ — кадр 3" loading="lazy">
                 <div class="photo-caption">ГАЛО — момент истины #3</div>
             </div>
-            
+        </div>
+
+        <!-- Четвертая фотография — строго по центру -->
+        <div class="centered-photo">
             <div class="single-photo">
-                <img src="IMG_6441.png" alt="ГАЛО КОНЦЕРТ — кадр 4" loading="lazy">
-                <div class="photo-caption">ГАЛО — момент истины #4</div>
+                <img src="IMG_6441.png" alt="ГАЛО КОНЦЕРТ — кадр 4 (центр)" loading="lazy">
+                <div class="photo-caption">ГАЛО — момент истины #4 · центр кадра</div>
+            </div>
+        </div>
+
+        <!-- ВИДЕО: под всеми фотографиями. Название файла: 15381771586117.mp4 -->
+        <div class="video-wrapper">
+            <video controls autoplay muted loop playsinline poster="IMG_6441.png">
+                <source src="15381771586117.mp4" type="video/mp4">
+                Ваш браузер не поддерживает тег video. Обновите браузер для просмотра.
+            </video>
+            <div class="video-caption">
+                <i class="fas fa-play-circle" style="margin-right: 6px;"></i> ГАЛО КОНЦЕРТ — живое воплощение силы · 15381771586117.mp4
             </div>
         </div>
 
@@ -248,5 +309,28 @@
             <div class="micro-note">наше сообщество — наша сила</div>
         </div>
     </div>
+
+    <!-- небольшой скрипт для улучшения автовоспроизведения (но без навязчивости, mute+autoplay уже работает в современных браузерах) -->
+    <script>
+        (function() {
+            const videoElem = document.querySelector('video');
+            if(videoElem) {
+                // чтобы видео не висело с ошибкой, но mute уже стоит, autoplay включен
+                // также попытаемся включить звук по первому тапу на контейнер (опционально, не ломает интерфейс)
+                const videoContainer = document.querySelector('.video-wrapper');
+                if(videoContainer) {
+                    videoContainer.addEventListener('click', () => {
+                        if(videoElem.muted) {
+                            videoElem.muted = false;
+                            // легкий фидбек: можно не перезапускать, а просто дать звук
+                        }
+                        videoElem.play().catch(e => console.log("autoplay blocked, user interaction needed"));
+                    });
+                }
+                // поддержка репозитория GitHub: все ресурсы локальные, используем относительные пути
+                console.log('Видео загружено: 15381771586117.mp4 (github pages или локально)');
+            }
+        })();
+    </script>
 </body>
 </html>
