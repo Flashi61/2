@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ГАЛО КОНЦЕРТ — провокация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #010502;
+            background-image: radial-gradient(circle at 30% 20%, rgba(40, 160, 70, 0.35) 0%, #000200 100%);
+            color: #e0f5e8;
+            line-height: 1.4;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 2rem 1rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
+
+        .halo-container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(24px);
+            border-radius: 3rem;
+            padding: 2.5rem 2rem;
+            border: 1.5px solid #2eff8c;
+            box-shadow: 0 0 60px rgba(46, 255, 140, 0.3);
+            animation: pulseGreen 3s infinite alternate;
+        }
+
+        @keyframes pulseGreen {
+            0% { box-shadow: 0 0 20px rgba(46, 255, 140, 0.2); border-color: #2eff8c80; }
+            100% { box-shadow: 0 0 70px rgba(46, 255, 140, 0.6); border-color: #2eff8c; }
+        }
+
+        .question-block {
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+        .question {
+            font-size: clamp(1.6rem, 6vw, 3.8rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff, #7affb0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            border-right: 3px solid #2eff8c;
+            padding-right: 12px;
+            animation: blinkCursor 0.9s infinite;
+        }
+        @keyframes blinkCursor {
+            0%, 100% { border-color: #2eff8c; }
+            50% { border-color: transparent; }
+        }
+
+        .answer-head {
+            text-align: center;
+            margin: 0.2rem 0 1rem;
+        }
+        .answer {
+            font-size: clamp(1.5rem, 5vw, 2.8rem);
+            font-weight: 700;
+            background: linear-gradient(115deg, #f0fff4, #a0f7c2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .manifesto {
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 2rem auto;
+            color: #d0f0df;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .single-photo {
+            max-width: 700px;
+            margin: 1.8rem auto;
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 2px solid rgba(46, 255, 140, 0.7);
+            transition: 0.25s ease;
+            box-shadow: 0 0 25px rgba(46, 255, 140, 0.3);
+            background: #000;
+        }
+        .single-photo:hover {
+            transform: scale(1.01);
+            border-color: #2eff8c;
+            box-shadow: 0 0 35px rgba(46, 255, 140, 0.6);
+        }
+        .single-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .photo-caption {
+            text-align: center;
+            padding: 0.9rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: #bef5d4;
+            background: rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(46, 255, 140, 0.4);
+        }
+
+        .egida-wrapper {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .egida-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            padding: 0.9rem 2rem;
+            border-radius: 100px;
+            border: 1.5px solid #2eff8c;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: #2eff8c;
+            transition: 0.2s;
+        }
+        .egida-link i {
+            font-size: 1.5rem;
+        }
+        .egida-link:hover {
+            background: #2eff8c;
+            color: #010502;
+            box-shadow: 0 0 20px #2eff8c;
+        }
+        .micro-note {
+            margin-top: 0.6rem;
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        .bg-blur {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(46,255,140,0.2), rgba(0,0,0,0));
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            animation: floatBg 22s infinite alternate;
+        }
+        .blur1 { top: -10%; left: -15%; }
+        .blur2 { bottom: -10%; right: -15%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(80,220,120,0.2), transparent); animation-duration: 26s; }
+        @keyframes floatBg {
+            0% { transform: translate(0,0) scale(1); opacity: 0.4; }
+            100% { transform: translate(60px, 40px) scale(1.2); opacity: 0.7; }
+        }
+
+        @media (max-width: 680px) {
+            .halo-container {
+                padding: 1.5rem;
+            }
+            .single-photo {
+                margin: 1rem auto;
+            }
+            .egida-link {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blur blur1"></div>
+    <div class="bg-blur blur2"></div>
+
+    <div class="halo-container">
+        <div class="question-block">
+            <span class="question">А ЧТО ДЛЯ ВАС ГАЛО.КОНЦЕРТ?</span>
+        </div>
+        <div class="answer-head">
+            <div class="answer">⚡ ДЛЯ НАС ЭТО... ⚡</div>
+        </div>
+        <div class="manifesto">
+            Вспышка, ломающая реальность. Звук, прожигающий вены. Зелёный неон вместо крови.<br>
+            Не концерт — ритуал. Не зрители — сообщество.
+        </div>
+
+        <div class="single-photo">
+            <img src="IMG_6438.png" alt="ГАЛО КОНЦЕРТ — кадр">
+            <div class="photo-caption">ГАЛО — момент истины / фото предоставлено сообществом</div>
+        </div>
+
+        <div class="egida-wrapper">
+            <a href="https://vk.com/mpo_egida" target="_blank" rel="noopener noreferrer" class="egida-link">
+                <i class="fab fa-vk"></i> МЕЖВУЗОВСКИЙ ПЕДАГОГИЧЕСКИЙ ОТРЯД «ЭГИДА»
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            <div class="micro-note">наше сообщество — наша сила</div>
+        </div>
+    </div>
+</body>
+</html>
