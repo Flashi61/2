@@ -98,9 +98,16 @@
             line-height: 1.4;
         }
 
-        .single-photo {
-            max-width: 700px;
+        /* галерея из 4 фотографий */
+        .photos-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
             margin: 1.8rem auto;
+        }
+
+        .single-photo {
             border-radius: 2rem;
             overflow: hidden;
             border: 2px solid rgba(46, 255, 140, 0.7);
@@ -109,7 +116,7 @@
             background: #000;
         }
         .single-photo:hover {
-            transform: scale(1.01);
+            transform: scale(1.02);
             border-color: #2eff8c;
             box-shadow: 0 0 35px rgba(46, 255, 140, 0.6);
         }
@@ -147,6 +154,7 @@
             text-decoration: none;
             color: #2eff8c;
             transition: 0.2s;
+            margin: 0.5rem;
         }
         .egida-link i {
             font-size: 1.5rem;
@@ -183,8 +191,8 @@
             .halo-container {
                 padding: 1.5rem;
             }
-            .single-photo {
-                margin: 1rem auto;
+            .photos-gallery {
+                grid-template-columns: 1fr;
             }
             .egida-link {
                 padding: 0.7rem 1.2rem;
@@ -209,9 +217,27 @@
             Не концерт — ритуал. Не зрители — сообщество.
         </div>
 
-        <div class="single-photo">
-            <img src="IMG_6438.png" alt="ГАЛО КОНЦЕРТ — кадр">
-            <div class="photo-caption">ГАЛО — момент истины / фото предоставлено сообществом</div>
+        <!-- ЧЕТЫРЕ ФОТОГРАФИИ — ГАЛЕРЕЯ ГАЛО -->
+        <div class="photos-gallery">
+            <div class="single-photo">
+                <img src="IMG_6438.png" alt="ГАЛО КОНЦЕРТ — кадр 1" loading="lazy">
+                <div class="photo-caption">ГАЛО — момент истины #1</div>
+            </div>
+            
+            <div class="single-photo">
+                <img src="IMG_6439.png" alt="ГАЛО КОНЦЕРТ — кадр 2" loading="lazy">
+                <div class="photo-caption">ГАЛО — момент истины #2</div>
+            </div>
+            
+            <div class="single-photo">
+                <img src="IMG_6440.png" alt="ГАЛО КОНЦЕРТ — кадр 3" loading="lazy">
+                <div class="photo-caption">ГАЛО — момент истины #3</div>
+            </div>
+            
+            <div class="single-photo">
+                <img src="IMG_6441.png" alt="ГАЛО КОНЦЕРТ — кадр 4" loading="lazy">
+                <div class="photo-caption">ГАЛО — момент истины #4</div>
+            </div>
         </div>
 
         <div class="egida-wrapper">
